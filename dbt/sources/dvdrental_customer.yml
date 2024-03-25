@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: dvdrental
+    database: dwh  
+    schema: dvdrental  
+    tables:
+      - name: customer

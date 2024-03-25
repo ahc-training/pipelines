@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: dbt-core
+  labels:
+    app: dbt-core
+spec:
+  initContainers:
+  - name: git-sync
+    image: registry.k8s.io/git-sync/git-sync:v4.0.0
+    volumeMounts:
+    - name: git-repo
+      mountPath: /tmp/git
+    env:
+    - name: GITSYNC_REPO
+      valueFrom:
+        configMapKeyRef:
+          name: git-config
+          key: repository
+    - name: GITSYNC_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: git-secret
+          key: password
+    - name: GITSYNC_PERIOD
+      valueFrom:
+        configMapKeyRef:
+          name: git-config
+          key: period
+    - name: GITSYNC_REF
+      valueFrom:
+        configMapKeyRef:
+          name: git-config
+          key: branch
+    - name: GITSYNC_USERNAME
+      valueFrom:
+        configMapKeyRef:
+          name: git-config
+          key: username
+    - name: GITSYNC_ONE_TIME
+      valueFrom:
+        configMapKeyRef:
+          name: git-config
+          key: one-time
+    - name: GITSYNC_ROOT
+      valueFrom:
+        configMapKeyRef:
+          name: git-config
+          key: root
+    - name: GITSYNC_LINK
+      value: git-sync
+  containers:
+    - name: dbt-core
+      image: ghcr.io/dbt-labs/dbt-postgres:1.7.6
+      volumeMounts:
+      - name: git-repo
+        mountPath: /usr/app
+  volumes:
+  - name: git-repo
+    emptyDir: {}

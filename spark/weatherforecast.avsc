@@ -1,0 +1,203 @@
+{
+  "type": "record",
+  "name": "WeatherForecast",
+  "fields": [
+    { 
+      "name": "location",
+      "type": {
+        "type": "record",
+        "name": "weatherforecast.location",
+        "fields": [
+          { "name": "name", "type": "string" },
+          { "name": "region", "type": "string" },
+          { "name": "country", "type": "string" },
+          { "name": "lat", "type": "double" },
+          { "name": "lon", "type": "double" },
+          { "name": "tz_id", "type": "string" },
+          { "name": "localtime_epoch", "type": "long" },
+          { "name": "localtime", "type": "string" }
+        ]
+      }
+    },
+    {
+      "name": "current",
+      "type": {
+        "type": "record",
+        "name": "weatherforecast.current",
+        "fields": [
+            { "name": "last_updated_epoch", "type": "long" },
+            { "name": "last_updated", "type": "string" },
+            { "name": "temp_c", "type": "double" },
+            { "name": "temp_f", "type": "double" },
+            { "name": "is_day", "type": "double" },
+            { 
+              "name": "condition",
+              "type": {
+                "type": "record",
+                "name": "weatherforecast.current.condition",
+                "fields": [
+                  { "name": "text", "type": "string" },
+                  { "name": "icon", "type": "string" },
+                  { "name": "code", "type": "double" }
+                ]
+              }
+            },
+            { "name": "wind_mph", "type": "double" },
+            { "name": "wind_kph", "type": "double" },
+            { "name": "wind_degree", "type": "double" },
+            { "name": "wind_dir", "type": "string" },
+            { "name": "pressure_mb", "type": "double" },
+            { "name": "pressure_in", "type": "double" },
+            { "name": "precip_mm", "type": "double" },
+            { "name": "precip_in", "type": "double" },
+            { "name": "humidity", "type": "double" },
+            { "name": "cloud", "type": "double" },
+            { "name": "feelslike_c", "type": "double" },
+            { "name": "feelslike_f", "type": "double" },
+            { "name": "vis_km", "type": "double" },
+            { "name": "vis_miles", "type": "double" },
+            { "name": "uv", "type": "double" },
+            { "name": "gust_mph", "type": "double" },
+            { "name": "gust_kph", "type": "double" }
+        ]
+      }
+    },
+    {
+      "name": "forecast",
+      "type": {
+        "type": "record",
+        "name": "weatherforecast.forecast",
+        "fields": [
+          { 
+            "name": "forecastday",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "weatherforecast.forecast.forecastday",
+                "fields": [
+                  { "name": "date", "type": "string" },
+                  { "name": "date_epoch", "type": "long" },
+                  { 
+                    "name": "day", 
+                    "type": {
+                      "type": "record",
+                      "name": "weatherforecast.forecast.forecastday.day",
+                      "fields": [
+                        { "name": "maxtemp_c", "type": "double" },
+                        { "name": "maxtemp_f", "type": "double" },
+                        { "name": "mintemp_c", "type": "double" },
+                        { "name": "mintemp_f", "type": "double" },
+                        { "name": "avgtemp_c", "type": "double" },
+                        { "name": "avgtemp_f", "type": "double" },
+                        { "name": "maxwind_mph", "type": "double" },
+                        { "name": "maxwind_kph", "type": "double" },
+                        { "name": "totalprecip_mm", "type": "double" },
+                        { "name": "totalprecip_in", "type": "double" },
+                        { "name": "totalsnow_cm", "type": "double" },
+                        { "name": "avgvis_km", "type": "double" },
+                        { "name": "avgvis_miles", "type": "double" },
+                        { "name": "avghumidity", "type": "double" },
+                        { "name": "daily_will_it_rain", "type": "double" },
+                        { "name": "daily_chance_of_rain", "type": "double" },
+                        { "name": "daily_will_it_snow", "type": "double" },
+                        { "name": "daily_chance_of_snow", "type": "double" },
+                        { 
+                          "name": "condition",
+                          "type": {
+                            "type": "record",
+                            "name": "weatherforecast.forecast.forecastday.day.condition",
+                            "fields": [
+                              { "name": "text", "type": "string" },
+                              { "name": "icon", "type": "string" },
+                              { "name": "code", "type": "double" }
+                            ]
+                          }
+                        },
+                        { "name": "uv", "type": "double" }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "astro",
+                    "type": {
+                      "type": "record",
+                      "name": "weatherforecast.forecast.forecastday.astro",
+                      "fields": [
+                        { "name": "sunrise", "type": "string" },
+                        { "name": "sunset", "type": "string" },
+                        { "name": "moonrise", "type": "string" },
+                        { "name": "moonset", "type": "string" },
+                        { "name": "moon_phase", "type": "string" },
+                        { "name": "moon_illumination", "type": "double" },
+                        { "name": "is_moon_up", "type": "double" },
+                        { "name": "is_sun_up", "type": "double" }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "hour",
+                    "type": {
+                      "type": "array",
+                      "items": {
+                        "type": "record",
+                        "name": "weatherforecast.forecast.forecastday.hour",
+                        "fields": [
+                          { "name": "time_epoch", "type": "long" },
+                          { "name": "time", "type": "string" },
+                          { "name": "temp_c", "type": "double" },
+                          { "name": "temp_f", "type": "double" },
+                          { "name": "is_day", "type": "double" },
+                          { 
+                            "name": "condition",
+                            "type": {
+                              "type": "record",
+                              "name": "weatherforecast.forecast.forecastday.hour.condition",
+                              "fields": [
+                                { "name": "text", "type": "string" },
+                                { "name": "icon", "type": "string" },
+                                { "name": "code", "type": "double" }
+                              ]
+                            }
+                          },
+                          { "name": "wind_kph", "type": "double" },
+                          { "name": "wind_mph", "type": "double" },
+                          { "name": "wind_degree", "type": "double" },
+                          { "name": "wind_dir", "type": "string" },
+                          { "name": "pressure_mb", "type": "double" },
+                          { "name": "pressure_in", "type": "double" },
+                          { "name": "precip_mm", "type": "double" },
+                          { "name": "precip_in", "type": "double" },
+                          { "name": "snow_cm", "type": "double" },
+                          { "name": "humidity", "type": "double" },
+                          { "name": "cloud", "type": "double" },
+                          { "name": "feelslike_c", "type": "double" },
+                          { "name": "feelslike_f", "type": "double" },
+                          { "name": "windchill_c", "type": "double" },
+                          { "name": "windchill_f", "type": "double" },
+                          { "name": "heatindex_c", "type": "double" },
+                          { "name": "heatindex_f", "type": "double" },
+                          { "name": "dewpoint_c", "type": "double" },
+                          { "name": "dewpoint_f", "type": "double" },
+                          { "name": "will_it_rain", "type": "double" },
+                          { "name": "chance_of_rain", "type": "double" },
+                          { "name": "will_it_snow", "type": "double" },
+                          { "name": "chance_of_snow", "type": "double" },
+                          { "name": "vis_km", "type": "double" },
+                          { "name": "vis_miles", "type": "double" },
+                          { "name": "gust_mph", "type": "double" },
+                          { "name": "gust_kph", "type": "double" },
+                          { "name": "uv", "type": "double" }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

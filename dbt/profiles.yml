@@ -1,0 +1,25 @@
+config:
+  debug: true
+  fail_fast: true
+  log_format: text
+  partial_parse: true
+  printer_width: 80
+  send_anonymous_usage_stats: false
+  static_parser: true
+  use_colors: true
+  use_experimental_parser: false
+  version_check: true
+  warn_error: true
+  write_json: true
+data_platform:
+  outputs:
+    dev:
+      dbname: dwh
+      host: "{{ env_var('PGSQL_HOST') }}"
+      pass: Sql123!
+      port: 5432
+      schema: dbt_dwh
+      threads: 1
+      type: postgres
+      user: postgres
+  target: dev

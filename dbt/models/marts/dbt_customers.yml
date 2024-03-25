@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dbt_customers
+    description: "DVD Rental customer data"
+    columns:
+      - name: customer_sk
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
